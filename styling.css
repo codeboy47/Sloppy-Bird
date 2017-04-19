@@ -1,0 +1,92 @@
+body{
+	text-align: center;
+	background: white;
+	background: radial-gradient(circle, #fff 20%, #ccc);		
+   	/*background: radial-gradient(circle, #fcffde 20%, #4daacc);*/
+}
+#heading{
+	margin:0px auto 10px auto;
+	//margin-left: 50px;
+    //margin-top: 10px;
+    width : 70%;
+    font-size: 70px;
+    color: #ffec00;
+    text-shadow: -4px 0 darkblue, 0 4px blue, 0 -4px blue;
+}
+
+#container{
+	margin:0px auto 10px auto; /* this is done to make heading centrally align */
+    width:70%;  /* this is also necessary for making heading at center */
+    //overflow:auto;
+	//margin-left: 90px;
+	position: relative;
+	//width: 1200px;
+	height: 500px;
+	border: 2px solid red;
+	background-image: url(sky2.jpg);
+}
+
+#tube1{
+	top:0;
+	background-image: url(tube1.png);
+	
+	transform: rotate(180deg);
+}
+
+.tube {
+    position: absolute;
+    height: 190px;
+    width: 53px;
+    right: 0px;
+}
+
+#tube2{
+	bottom:0;
+	background-image: url(tube2.png);
+}
+
+#bird{
+	top: 10%;
+	left:10%;
+	position: absolute;
+	height: 40px;
+	width: 45px;
+	
+	background-image: url(angrybird2.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+#restartButton {
+	margin:0px auto 10px auto;
+	//margin-top: 40px;
+	//margin-left: 90px
+    position: absolute;
+    top: 0;
+    width: 30%;
+    //height : 80px;
+    //padding: 50px;
+    background-color: red;
+    color: yellow;
+    font-size: 35px;
+    border-radius: 5px;
+    box-shadow : 5px 5px 5px #006666;
+    cursor: pointer;
+    display: none;
+}
+
+#scoreDiv{
+	margin:0px auto 10px auto;
+	//margin-top: 70px;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	height: 120px;
+	width: 500px;
+	border: 5px solid black;
+}
+@media screen and (max-width: 700px) and (min-width: 10px){
+	#container{
+		width : 100%;
+	}
+}
