@@ -1,14 +1,25 @@
-$(function(){
+// http://downloads.khinsider.com/game-soundtracks/browse/S 
 
+/*window.onbeforeunload = function() {
+  //localStorage.clear();
+  localStorage.removeItem("myhighscore");
+  return '';
+};*/
+$(function(){
+    var audio1 = $("#aud1")[0];
+    //var audio1 = document.getElementById("aud1");
+    audio1.play();
+    var audio2 = $('#aud2')[0];
+    var audio3 = $('#aud3')[0];
     var mainBody = $('#main');
-	var container=$('#container');
-	var bird=$('#bird');
-	var tube=$('.tube');
-	var tube1=$('#tube1');
-	var tube2=$('#tube2');
+	var container = $('#container');
+	var bird = $('#bird');
+	var tube = $('.tube');
+	var tube1 = $('#tube1');
+	var tube2 = $('#tube2');
 	var score = $('#score');
     var speedSpan = $('#speed');
-    var high_score=$('#highscore');
+    var high_score = $('#highscore');
     var restartButton = $('#restartButton');
 
 
@@ -24,24 +35,30 @@ $(function(){
     var go_up = false;
     var scoreUpdated = false;
     var game_over = false;
-    var points=0;
-    var highscore1 = localStorage.getItem("myhighscore");
-    //localStorage.setItem("highscore",0);
-
+    var points = 0;
+    var highscoring = localStorage.getItem("myhighscore"); // local storage stores as key value pair
+    if(highscoring !== null)
+        high_score.text(localStorage.getItem("myhighscore"));
+    //window.alert(highscoring);
+    //window.alert(high_score);
 
     // game runs here
-    var gameLogic= setInterval(function () {
-    	 
+    var gameLogic = setInterval(function () {
+        // if collision happens
     	if (collision(bird, tube1) || collision(bird, tube2) || 
             parseInt(bird.css('top')) <= 0 || 
             parseInt(bird.css('top')) > container_height - bird_height) {
+            if(high_score == null){
+                prev = 0;
+            }else{
+                prev = 1;
+            }
             game_over = true;
             stop_the_game();
         }else{
-        	
-        	var tube_current_position=parseInt(tube.css('right'));
-
-        	if(tube_current_position>container_width-75 && game_over == false)
+        	var tube_current_position = parseInt(tube.css('right'));
+           
+        	if(tube_current_position > container_width-75 && game_over == false)
         	{
         		var newHeight=parseInt(Math.random()*200);
 
@@ -74,12 +91,12 @@ $(function(){
         		//add score through local storage
         		//if(highscore !== null){
       				 //if (points > parseInt(localStorage.getItem("highscore"))) {
-          				localStorage.setItem("highscore", points );
+          				//localStorage.setItem("highscore", points );
           				//high_score.text(localStorage.getItem("highscore"));
           			//}
     			//}
                 //else{
-      				localStorage.setItem("highscore", points );
+      				//localStorage.setItem("highscore", points );
                     //localStorage.setItem("myscore1",score);
     			//}
                 //high_score = localStorage.getItem("highscore");
@@ -88,8 +105,12 @@ $(function(){
 
         		score.text(points);
 
-    	   }
-    	   tube.css('right',tube_current_position + speed);
+    	    }
+    	    
+            // increasing the speed of tube
+            tube.css('right',tube_current_position + speed);
+            
+            // moving bird downwards
             if (go_up === false && game_over == false) {
                 go_down();
             }
@@ -141,17 +162,26 @@ $(function(){
 
 
     function stop_the_game() {
-        high_score.text(scores);
+        audio1.pause();
+        audio2.play();
+        if(highscoring !== null){
+            if(scores > highscoring){
+                high_score.text(scores);
+                localStorage.setItem("myhighscore",scores);
+            }
+        }else{
+            high_score.text(scores);
+            localStorage.setItem("myhighscore",scores);
+        }
+        
         clearInterval(gameLogic);
         // go_up is the var for calling function up continuously after every 10ms
         clearInterval(go_up); // this is done so that bird does not move upward continuously
         //clearInterval(up);
         game_over = true;
         restartButton.slideDown();
-        localStorage.setItem("myhighscore",scores);
         window.alert("\n\n   GAME OVER  !!!! \n\n   YOUR SCORE IS : " + scores +"\n\n");
     }
-
 
     restartButton.click(function () {
         location.reload();

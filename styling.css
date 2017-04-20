@@ -5,6 +5,7 @@ body{
    	/*background: radial-gradient(circle, #fcffde 20%, #4daacc);*/
 }
 #heading{
+
 	margin:0px auto 10px auto;
 	//margin-left: 50px;
     //margin-top: 10px;
@@ -23,12 +24,12 @@ body{
 	//width: 1200px;
 	height: 500px;
 	border: 2px solid red;
-	background-image: url(sky2.jpg);
+	background-image: url(assets/images/sky2.jpg);
 }
 
 #tube1{
 	top:0;
-	background-image: url(tube1.png);
+	background-image: url(assets/images/tube1.png);
 	
 	transform: rotate(180deg);
 }
@@ -42,7 +43,7 @@ body{
 
 #tube2{
 	bottom:0;
-	background-image: url(tube2.png);
+	background-image: url(assets/images/tube2.png);
 }
 
 #bird{
@@ -52,7 +53,7 @@ body{
 	height: 40px;
 	width: 45px;
 	
-	background-image: url(angrybird2.png);
+	background-image: url(assets/images/angrybird2.png);
 	background-repeat: no-repeat;
 	background-size: contain;
 }
