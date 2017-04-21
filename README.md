@@ -1,10 +1,12 @@
 # Sloppy-Bird
 <br>
-Description : A Flappy Bird clone made using javascript(ECMAScript 2015)
+## Description ## :
+A Flappy Bird clone made using javascript(ECMAScript 2015)
 <br>
-How to play : Press spacebar to jump
+## How to play : ##
+Press spacebar to jump
 <br>
-Developed by : Akshit Singh
+## Developed by : ##Akshit Singh
 
 <br>
 <br>
