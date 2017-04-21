@@ -24,7 +24,8 @@ body{
 	//width: 1200px;
 	height: 500px;
 	border: 2px solid red;
-	background-image: url(assets/images/sky2.jpg);
+	background-image: url(assets/images/videogamebg4.jpg);
+	background-size:contain ;
 }
 
 #tube1{

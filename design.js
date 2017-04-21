@@ -11,6 +11,7 @@ $(function(){
     audio1.play();
     var audio2 = $('#aud2')[0];
     var audio3 = $('#aud3')[0];
+    var audio4 = $('#aud4')[0];
     var mainBody = $('#main');
 	var container = $('#container');
 	var bird = $('#bird');
@@ -48,16 +49,14 @@ $(function(){
     	if (collision(bird, tube1) || collision(bird, tube2) || 
             parseInt(bird.css('top')) <= 0 || 
             parseInt(bird.css('top')) > container_height - bird_height) {
-            if(high_score == null){
-                prev = 0;
-            }else{
-                prev = 1;
-            }
+            audio4.play();
             game_over = true;
             stop_the_game();
         }else{
         	var tube_current_position = parseInt(tube.css('right'));
-           
+            if(tube_current_position > container_width - 100 && game_over == false){
+                audio3.play();
+            }
         	if(tube_current_position > container_width-75 && game_over == false)
         	{
         		var newHeight=parseInt(Math.random()*200);
@@ -124,13 +123,14 @@ $(function(){
     $(document).on('keydown', function (e) {
         var key = e.keyCode;
         if (key === 32 && go_up === false && game_over === false) {
-            go_up = setInterval(up, 50);
+            go_up = setInterval(up, 10);
         }
     });
 
     $(document).on('keyup', function (e) {
         var key = e.keyCode;
         if (key === 32 && game_over == false) {
+            //audio4.play();
             clearInterval(go_up);
             go_up = false;
         }
@@ -152,11 +152,12 @@ $(function(){
 
 
     function go_down() {
-        bird.css('top', parseInt(bird.css('top')) + 5);
+        bird.css('top', parseInt(bird.css('top')) + 8);
     }
 
     function up() {
-        bird.css('top', parseInt(bird.css('top')) - 2.2);
+        //audio4.play();
+        bird.css('top', parseInt(bird.css('top')) - 4);
     }
 
 
@@ -177,10 +178,18 @@ $(function(){
         clearInterval(gameLogic);
         // go_up is the var for calling function up continuously after every 10ms
         clearInterval(go_up); // this is done so that bird does not move upward continuously
-        //clearInterval(up);
         game_over = true;
-        restartButton.slideDown();
-        window.alert("\n\n   GAME OVER  !!!! \n\n   YOUR SCORE IS : " + scores +"\n\n");
+        audio2.addEventListener("ended", function(){
+            audio2.currentTime = 0;
+            //window.alert("\n\n   GAME OVER  !!!! \n\n   YOUR SCORE IS : " + scores +"\n\n");
+            console.log("ended");
+            if (confirm("\n\n   GAME OVER  !!!! \n\n   YOUR SCORE IS : " + scores +"\n\n")) {
+                restartButton.slideDown();
+            }
+        });
+        
+
+
     }
 
     restartButton.click(function () {
