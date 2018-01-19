@@ -13,4 +13,4 @@ Developed by : Akshit Singh
 
 <img  src = "https://github.com/akshitSingh07/Sloppy-Bird/blob/master/assets/images/Game4.png" />
 <br>
-Play online at :   https://akshitSingh07.github.io/Sloppy-Bird/
+Play online at :   https://codeboy47.github.io/Sloppy-Bird/
