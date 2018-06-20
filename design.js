@@ -1,6 +1,10 @@
-// http://downloads.khinsider.com/game-soundtracks/browse/S
+// http://downloads.khinsider.com/game-soundtracks/browse/S 
 
-
+/*window.onbeforeunload = function() {
+  //localStorage.clear();
+  localStorage.removeItem("myhighscore");
+  return '';
+};*/
 $(function(){
     var audio1 = $("#aud1")[0];
     //var audio1 = document.getElementById("aud1");
@@ -19,7 +23,8 @@ $(function(){
     var high_score = $('#highscore');
     var restartButton = $('#restartButton');
 
-    var container_width = parseInt(container.width()); // parseInt convert string into integer
+
+	var container_width = parseInt(container.width()); // parseInt convert string into integer
     var container_height = parseInt(container.height());
     var tube_initial_position = parseInt(tube.css('right'));
     var tube_initial_height = parseInt(tube.css('height'));
@@ -41,8 +46,8 @@ $(function(){
     // game runs here
     var gameLogic = setInterval(function () {
         // if collision happens
-    	if (collision(bird, tube1) || collision(bird, tube2) ||
-            parseInt(bird.css('top')) <= 0 ||
+    	if (collision(bird, tube1) || collision(bird, tube2) || 
+            parseInt(bird.css('top')) <= 0 || 
             parseInt(bird.css('top')) > container_height - bird_height) {
             audio4.play();
             game_over = true;
@@ -100,10 +105,10 @@ $(function(){
         		score.text(points);
 
     	    }
-
+    	    
             // increasing the speed of tube
             tube.css('right',tube_current_position + speed);
-
+            
             // moving bird downwards
             if (go_up === false && game_over == false) {
                 go_down();
@@ -113,7 +118,7 @@ $(function(){
     },30);
 
     //functions defined here
-
+      
     //for keyboard
     $(document).on('keydown', function (e) {
         var key = e.keyCode;
@@ -131,19 +136,19 @@ $(function(){
         }
     });
 
-    //for mouse
+    //for touch
      mainBody.mousedown(function(){
      	 if (go_up === false && game_over === false) {
             go_up = setInterval(up, 10);
         }
-
+        
     });
 
      mainBody.mouseup(function(){
         //if(game_over === false)
      	 clearInterval(go_up);
             go_up = false;
-     });
+        });
 
 
     function go_down() {
@@ -169,7 +174,7 @@ $(function(){
             high_score.text(scores);
             localStorage.setItem("myhighscore",scores);
         }
-
+        
         clearInterval(gameLogic);
         // go_up is the var for calling function up continuously after every 10ms
         clearInterval(go_up); // this is done so that bird does not move upward continuously
@@ -182,7 +187,7 @@ $(function(){
                 restartButton.slideDown();
             }
         });
-
+        
 
 
     }
@@ -194,7 +199,7 @@ $(function(){
     function collision($div1, $div2) {
         var x1 = $div1.offset().left; // offset returns coordinates(top,left) of element(p,h1,h2)
         var y1 = $div1.offset().top;
-        var h1 = $div1.outerHeight(true); // outer width (if true margin is included)
+        var h1 = $div1.outerHeight(true);
         var w1 = $div1.outerWidth(true);
         var b1 = y1 + h1 - 5;
         var r1 = x1 + w1 - 5; // exactly touch the obstacle
