@@ -145,24 +145,6 @@ $(function(){
             go_up = false;
      });
 
-     // for touch
-     $(document).on('touchstart', function (e) {
-        var key = e.keyCode;
-        if (key === 32 && go_up === false && game_over === false) {
-            go_up = setInterval(up, 10);
-        }
-     });
-
-     $(document).on('touchend', function (e) {
-        var key = e.keyCode;
-        if (key === 32 && game_over == false) {
-            //audio4.play();
-            clearInterval(go_up);
-            go_up = false;
-        }
-     });
-
-
 
     function go_down() {
         bird.css('top', parseInt(bird.css('top')) + 8);
