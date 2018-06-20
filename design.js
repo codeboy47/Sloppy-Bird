@@ -119,49 +119,16 @@ $(function(){
 
     //functions defined here
       
-    //for keyboard
-    $(document).on('keydown', function (e) {
-        var key = e.keyCode;
-        if (key === 32 && go_up === false && game_over === false) {
-            go_up = setInterval(up, 10);
-        }
-    });
-
-    $(document).on('keyup', function (e) {
-        var key = e.keyCode;
-        if (key === 32 && game_over == false) {
-            //audio4.play();
-            clearInterval(go_up);
-            go_up = false;
-        }
-    });
-
-    //for mouse
-     mainBody.mousedown(function(){
-     	 if (go_up === false && game_over === false) {
-            go_up = setInterval(up, 10);
-        }
-        
-    });
-
-     mainBody.mouseup(function(){
-        //if(game_over === false)
-     	 clearInterval(go_up);
-            go_up = false;
-     });
+   
 	
      // for touch
-     $(document).on('touchstart', function (e) {
-        var key = e.keyCode;
-        if (key === 32 && go_up === false && game_over === false) {
+     $(document).on("touchstart", function (e) {
+        if (go_up === false && game_over === false) {
             go_up = setInterval(up, 10);
         }
      });
 
-     $(document).on('touchend', function (e) {
-        var key = e.keyCode;
-        if (key === 32 && game_over == false) {
-            //audio4.play();
+     $(document).on("touchend", function (e) {    
             clearInterval(go_up);
             go_up = false;
         }
