@@ -1,3 +1,10 @@
+// http://downloads.khinsider.com/game-soundtracks/browse/S
+
+/*window.onbeforeunload = function() {
+  //localStorage.clear();
+  localStorage.removeItem("myhighscore");
+  return '';
+};*/
 
 $(function(){
     var audio1 = $("#aud1")[0];
@@ -33,6 +40,8 @@ $(function(){
     var highscoring = localStorage.getItem("myhighscore"); // local storage stores as key value pair
     if(highscoring !== null)
         high_score.text(localStorage.getItem("myhighscore"));
+    //window.alert(highscoring);
+    //window.alert(high_score);
 
     // game runs here
     var gameLogic = setInterval(function () {
@@ -67,11 +76,35 @@ $(function(){
         		    tube2.css('height',tube_initial_height-newHeight);
                 }
 
+    			//update the score when the poles have passed the bird successfully
+                /*if (tube_current_position > container_width - bird_left) {
+                    if (scoreUpdated === false) {
+                        score.text(parseInt(score.text()) + 1);
+                        scoreUpdated = true;
+                    }
+                }
+                scoreUpdated = false;*/
 
+        		//change speed
         		speed=speed+0.5;
         		speedSpan.text(speed);
         		points=points+1;
                 scores = points;
+
+        		//add score through local storage
+        		//if(highscore !== null){
+      				 //if (points > parseInt(localStorage.getItem("highscore"))) {
+          				//localStorage.setItem("highscore", points );
+          				//high_score.text(localStorage.getItem("highscore"));
+          			//}
+    			//}
+                //else{
+      				//localStorage.setItem("highscore", points );
+                    //localStorage.setItem("myscore1",score);
+    			//}
+                //high_score = localStorage.getItem("highscore");
+
+          		//high_score.text(highscore);
 
         		score.text(points);
 
@@ -87,7 +120,6 @@ $(function(){
         }
 
     },30);
-
 
     //functions defined here
 
@@ -117,20 +149,26 @@ $(function(){
     });
 
      mainBody.mouseup(function(){
-         clearInterval(go_up);
-         go_up = false;
+        //if(game_over === false)
+     	 clearInterval(go_up);
+            go_up = false;
      });
 
      // for touch
      $(document).on('touchstart', function (e) {
-        if (go_up === false && game_over === false) {
+        var key = e.keyCode;
+        if (key === 32 && go_up === false && game_over === false) {
             go_up = setInterval(up, 10);
         }
      });
 
      $(document).on('touchend', function (e) {
+        var key = e.keyCode;
+        if (key === 32 && game_over == false) {
+            //audio4.play();
             clearInterval(go_up);
             go_up = false;
+        }
      });
 
 
